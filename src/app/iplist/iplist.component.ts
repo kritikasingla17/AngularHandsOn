@@ -26,6 +26,7 @@ export class IPListComponent implements OnInit {
     }
   }
 
+
   // delete input field
   deleteIP=(index)=>{
     console.log("delete IP");
@@ -64,7 +65,7 @@ export class IPListComponent implements OnInit {
     
   }
 
-  // 
+  
   validate=()=>{
     var data;
      data=this.IPArray.find(function(element) { 
@@ -76,6 +77,7 @@ export class IPListComponent implements OnInit {
     else
     return false
   }
+
   validateIp=(index)=>{
     if(this.IPArray[index].ip==="")
     return true

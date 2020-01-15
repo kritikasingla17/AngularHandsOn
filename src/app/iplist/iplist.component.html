@@ -1,7 +1,7 @@
 <div *ngFor="let IPfield of IPArray; let i = index">
     <input (change)="onChange(i)" [(ngModel)]="IPfield.ip"type="text"/>
-    <button  *ngIf="i==IPArray.length-1"(click)="addIP()">+</button>
-    <button *ngIf="i==IPArray.length-1"(click)="deleteIP(i)">-</button>
+    <button class="add" *ngIf="i==IPArray.length-1"(click)="addIP()">+</button>
+    <button class="delete"*ngIf="i==IPArray.length-1"(click)="deleteIP(i)">-</button>
     <label *ngIf="!validateIp(i)">IP address is not valid</label>
 </div>
-<button [disabled]="saveButtonDisabled" (click)="save()">Save</button>
+<button class="submit"[disabled]="saveButtonDisabled" (click)="save()">Save</button>
