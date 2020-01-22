@@ -14,14 +14,15 @@ export class IPListComponent implements OnInit {
   constructor() { }
   ngOnInit() {
     this.IPArray=[{ip:""}];
-    this.user_type=localStorage.getItem("user_type");
+    this.user_type=JSON.parse(localStorage.getItem("user_type"));
     this.saveButtonDisabled=true
   }
 
   // add input field
   addIP=()=>{
+    this.saveButtonDisabled=true;
     console.log("add IP");
-    if((this.user_type.toUpperCase()==='basic'.toUpperCase() && this.IPArray.length<5)|| (this.user_type.toUpperCase()==='premium'.toUpperCase() && this.IPArray.length<10)){
+    if(this.IPArray.length<this.user_type.length){
       this.IPArray.push({ip:""})
     }
   }
@@ -49,19 +50,27 @@ export class IPListComponent implements OnInit {
 
   // validate input field on change
   onChange=(index)=>{
-    console.log("in on change");
-    if(this.validateIp(index)){
-      if(this.validate()){
-        this.saveButtonDisabled=false
+    this.saveButtonDisabled=true;
+    for(var i=0;i<this.IPArray.length;i++){
+      if(this.validateIp(i))
+      {
+        if(this.validate()){
+        this.saveButtonDisabled=false;
+
+        }
+        else{
+          this.saveButtonDisabled=true;
+          break;
+        }
+       
       }
       else{
-        this.saveButtonDisabled=true
+        this.saveButtonDisabled=true;
+        break;
       }
     }
-    else{
-      this.saveButtonDisabled=true
-
-    }
+    console.log("in on change");
+    
     
   }
 
@@ -71,7 +80,7 @@ export class IPListComponent implements OnInit {
      data=this.IPArray.find(function(element) { 
       return element.ip===""; 
     });
-    
+    console.log(data)
     if(data===undefined && localStorage.getItem("IPList")!==JSON.stringify(this.IPArray))
     return true
     else

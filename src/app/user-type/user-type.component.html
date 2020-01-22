@@ -1,5 +1,7 @@
-<select [(ngModel)]="user_type">
-    <option>Basic</option>
-    <option>Premium</option>
+<select [(ngModel)]="selected_user_type_name" (ngModelChange)="SelectedUserType(selected_user_type_name)">
+        <option *ngFor="let user_type of user_types"  >
+                {{user_type.name}}
+            </option>
 </select>
 <button  (click)="userType_submit()"routerLink="list">Submit</button>
+
