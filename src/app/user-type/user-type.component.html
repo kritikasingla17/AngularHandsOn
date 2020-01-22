@@ -1,4 +1,4 @@
-<select [(ngModel)]="selected_user_type_name" (ngModelChange)="SelectedUserType(selected_user_type_name)">
+<select [(ngModel)]="selected_user_type_name.name" (ngModelChange)="SelectedUserType(selected_user_type_name.name)">
         <option *ngFor="let user_type of user_types"  >
                 {{user_type.name}}
             </option>
