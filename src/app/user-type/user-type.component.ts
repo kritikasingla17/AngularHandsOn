@@ -8,7 +8,7 @@ import user_type_data from './user_type_data.js'
 })
 export class UserTypeComponent implements OnInit {
   public user_types=[]
-  public selected_user_type_name={}
+  public selected_user_type_name={name:""}
   public selected_user_type=[]
   constructor() { }
   SelectedUserType(name:string){
